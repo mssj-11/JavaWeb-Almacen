@@ -9,9 +9,23 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Almacen</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Productos</h1>
+        <a href="nuevo.jsp">Nuevo producto</a><br/><br/>
+        
+        <table border="1" width="80%">
+            <thead>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Existencia</th>
+                <th>Acciones</th>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
     </body>
 </html>
