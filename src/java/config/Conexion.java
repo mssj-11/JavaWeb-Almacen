@@ -3,6 +3,8 @@ package config;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -11,15 +13,16 @@ import java.sql.SQLException;
 
 public class Conexion {
     
-    public Connection getConexion() throws ClassNotFoundException{
+    public Connection getConexion(){
         
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaweb-almacen", "root", "");
             System.out.println("Conexion Exitosa");
             return conexion;
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             System.out.println("Error: "+e.toString());
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
         

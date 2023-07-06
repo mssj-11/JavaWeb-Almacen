@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> <!-- Libreria para imp. ForEach -->
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,7 +14,7 @@
     </head>
     <body>
         <h1>Productos</h1>
-        <a href="nuevo.jsp">Nuevo producto</a><br/><br/>
+        <a href="ProductosController?accion=nuevo">Nuevo producto</a><br/><br/>
         
         <table border="1" width="80%">
             <thead>
@@ -24,7 +25,18 @@
                 <th>Acciones</th>
             </thead>
             <tbody>
-                
+                <c:forEach var="producto" items="${lista}" >
+                    <tr>
+                        <td><c:out value="${producto.codigo}"></c:out></td>
+                        <td><c:out value="${producto.nombre}"></c:out></td>
+                        <td><c:out value="${producto.precio}"></c:out></td>
+                        <td><c:out value="${producto.existencia}"></c:out></td>
+                        <td>
+                        <c:out value="${producto.id}"></c:out>
+                        <c:out value="${producto.id}"></c:out>
+                        </td>
+                    </tr>
+                </c:forEach>
             </tbody>
         </table>
     </body>

@@ -27,7 +27,7 @@
             <input id="existencia" name="existencia" type="text" />
             <br/><br/>
             <button id="guardar" name="guardar" type="submit">Guardar</button>
-            <a href="index.jsp">Cancelar</a>
+            <a href="ProductosController">Cancelar</a>
         </form>
     </body>
 </html>

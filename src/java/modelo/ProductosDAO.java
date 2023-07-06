@@ -17,7 +17,7 @@ public class ProductosDAO {
     
     Connection conexion;
     
-    public ProductosDAO() throws ClassNotFoundException{//Por si hay ERROR de conexion: throws ClassNotFoundException
+    public ProductosDAO(){
         Conexion con = new Conexion();
         conexion = con.getConexion();
     }

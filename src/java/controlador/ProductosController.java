@@ -30,6 +30,8 @@ public class ProductosController extends HttpServlet {
             dispatcher = request.getRequestDispatcher("Productos/index.jsp");
             List<Productos> listaProductos = productosDAO.listarProductos();
             request.setAttribute("lista", listaProductos);
+        }else if("nuevo".equals(accion)){
+            dispatcher = request.getRequestDispatcher("Productos/nuevo.jsp");
         }
         dispatcher.forward(request, response);
     }
@@ -44,6 +46,7 @@ public class ProductosController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    
     
     
 }
