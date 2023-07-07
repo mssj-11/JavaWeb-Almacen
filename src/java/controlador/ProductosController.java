@@ -32,6 +32,48 @@ public class ProductosController extends HttpServlet {
             request.setAttribute("lista", listaProductos);
         }else if("nuevo".equals(accion)){
             dispatcher = request.getRequestDispatcher("Productos/nuevo.jsp");
+        }else if("insertar".equals(accion)){
+            String codigo = request.getParameter("codigo");
+            String nombre = request.getParameter("nombre");
+            Double precio = Double.parseDouble(request.getParameter("precio"));
+            int existencia = Integer.parseInt(request.getParameter("existencia"));
+            
+            Productos producto = new Productos(0, codigo, nombre, precio, existencia);
+            productosDAO.insertarProducto(producto);
+            dispatcher = request.getRequestDispatcher("Productos/index.jsp");
+            //  Mostrando de nuevo la lista
+            List<Productos> listaProductos = productosDAO.listarProductos();
+            request.setAttribute("lista", listaProductos);
+        }else if("modificar".equals(accion)){
+            dispatcher = request.getRequestDispatcher("Productos/modificar.jsp");
+            int id = Integer.parseInt(request.getParameter("id"));
+            Productos producto = productosDAO.mostrarProductos(id);
+            request.setAttribute("producto", producto);
+        }else if("actualizar".equals(accion)){
+            int id = Integer.parseInt(request.getParameter("id"));
+            String codigo = request.getParameter("codigo");
+            String nombre = request.getParameter("nombre");
+            Double precio = Double.parseDouble(request.getParameter("precio"));
+            int existencia = Integer.parseInt(request.getParameter("existencia"));
+            
+            Productos producto = new Productos(id, codigo, nombre, precio, existencia);
+            productosDAO.actualizarProducto(producto);
+            dispatcher = request.getRequestDispatcher("Productos/index.jsp");
+            //  Mostrando de nuevo la lista
+            List<Productos> listaProductos = productosDAO.listarProductos();
+            request.setAttribute("lista", listaProductos);
+        }else if("eliminar".equals(accion)){
+            int id = Integer.parseInt(request.getParameter("id"));
+            
+            productosDAO.eliminarProducto(id);
+            dispatcher = request.getRequestDispatcher("Productos/index.jsp");
+            //  Mostrando de nuevo la lista
+            List<Productos> listaProductos = productosDAO.listarProductos();
+            request.setAttribute("lista", listaProductos);
+        } else {
+            dispatcher = request.getRequestDispatcher("Productos/index.jsp");
+            List<Productos> listaProductos = productosDAO.listarProductos();
+            request.setAttribute("lista", listaProductos);
         }
         dispatcher.forward(request, response);
     }
